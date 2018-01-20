@@ -12,5 +12,5 @@ docker run \
     --net=host \
     --pid=host \
     --ipc=host \
-    --name=money \
+    --name=1c-money \
     sas/1c-client:i386 bash

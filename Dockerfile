@@ -19,10 +19,7 @@ ADD ./dck1C.sh /opt/
 ADD ./config/money.conf etc/apache2/conf-enabled/
 ADD ./config/ports.conf etc/apache2/
 
-RUN dpkg -i /opt/1c-enterprise83-common_${PLT_VERSION}_${PLT_ARCH}.deb \
-      /opt/1c-enterprise83-server_${PLT_VERSION}_${PLT_ARCH}.deb \
-      /opt/1c-enterprise83-client_${PLT_VERSION}_${PLT_ARCH}.deb \
-      /opt/1c-enterprise83-ws_${PLT_VERSION}_${PLT_ARCH}.deb \
+RUN dpkg -i /opt/*.deb \
       && unzip /opt/mscorefonts.zip -d /usr/share/fonts/TTF \
       && unzip /opt/ttf-fira-code.zip -d /usr/share/fonts/TTF \
       && unzip /opt/otf-fira-code.zip -d /usr/share/fonts/OTF \
