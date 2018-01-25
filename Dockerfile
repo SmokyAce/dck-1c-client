@@ -13,8 +13,7 @@ ENV PLT_ARCH i386
 ENV LANG ru_RU.utf8
 
 ADD ./dist/ /opt/
-ADD ./start1C.sh /opt/
-ADD ./dck1C.sh /opt/
+ADD ./scripts/ /opt/
 # apache config
 ADD ./config/money.conf etc/apache2/conf-enabled/
 ADD ./config/ports.conf etc/apache2/
@@ -26,7 +25,10 @@ RUN dpkg -i /opt/*.deb \
       && unzip /opt/zukitwo-themes.zip -d /usr/share/themes \
       && unzip /opt/yltra-icons.zip -d /usr/share/icons \
       && unzip /opt/ultraflat-icons.zip -d /usr/share/icons \
-      && rm /opt/*.deb && rm /opt/*.zip && chmod +x /opt/start1C.sh /opt/dck1C.sh \
+      && rm /opt/*.deb && rm /opt/*.zip \
+      && chmod +x /opt/start1C.sh /opt/dck1C.sh \
+      && mkdir /var/run/apache2 && chmod -R 777 /var/run/apache2 \
+      && chmod -R 777 /var/log/apache2 \
       && /bin/bash /etc/fonts/infinality/infctl.sh setstyle linux
 
 RUN cp /opt/backbas.so /opt/1C/v8.3/${PLT_ARCH}/backbas.so
@@ -45,4 +47,5 @@ ENV HOME /home/user
 
 EXPOSE 8080
 
+CMD apache2ctl -D FOREGROUND
 #CMD /opt/start1C.sh

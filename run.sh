@@ -6,6 +6,7 @@ cp -R ~/.1cv8 /tmp/user
 docker run \
     --tty \
     --detach \
+    --restart unless-stopped \
     --env DISPLAY \
     --volume $HOME/.Xauthority:/home/user/.Xauthority \
     --volume $HOME:/home/user \
@@ -13,4 +14,4 @@ docker run \
     --pid=host \
     --ipc=host \
     --name=1c-money \
-    sas/1c-client:i386 bash
+    sas/1c-client:i386
